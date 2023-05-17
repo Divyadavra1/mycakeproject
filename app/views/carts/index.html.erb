@@ -1,0 +1,91 @@
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="breadcrumb__text">
+                    <h2>Shopping cart</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="breadcrumb__links">
+                <%= link_to 'Home', root_path %>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>        
+                        <% @carts.all.each do |product| %>
+                            <tr>
+                            <td class="product__cart__item">
+                                <div class="product__cart__item__pic">
+                                <% if product.product.image.present? %>
+                                    <%= image_tag url_for(product.product.image), resize_to_limit: [100, 100] %>
+                                <% end %>
+                                </div>
+                                <div class="product__cart__item__text">
+                                <%= product.product.name %>
+                                <%= product.product.selling_price %>
+                                </div>
+                            </td>
+                            <td class="quantity__item">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                <%= form_with(url: carts_path, method: :patch) do |form| %>
+                                  <%= form.hidden_field :product_id, value: product.id %>
+                                  <%= form.number_field :quantity, value: product.quantity %>
+                                  <%= form.submit 'Update' %>
+                                <% end %>
+                                </div>
+                            </div>
+                            </td>
+                            <td class="cart__price"></td>
+                            <td class="cart__close"><%= button_to 'Remove cart', destroy_path(product), method: :delete %>
+                            </span></td>
+                        </tr>
+                    <% end %>
+                         </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                        <%= link_to "Continue Shopping", "/products" %> 
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn">
+                        <%= link_to "#" do %><i class="fa fa-spinner">Update cart</i><% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">               
+                <div class="cart__total">
+                    <%= link_to "Proceed to checkout", "/checkout", class: "primary-btn" %> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+

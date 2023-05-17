@@ -1,0 +1,94 @@
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__cart">
+        <div class="offcanvas__cart__links">
+            <a href="#" class="search-switch">
+            </a>
+        </div>
+        <div class="offcanvas__cart__item">
+            <a href="#"><%= image_tag "icon/cart.png" %><span>0</span></a>
+            <div class="cart__price">Cart: <span>$0.00</span></div>
+        </div>
+    </div>
+    <div class="offcanvas__logo">
+    <%= link_to 'Home', root_path %><%= image_tag "logo.png" %>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__option">
+        <ul>
+        <% if user_signed_in? %>
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>
+            <li><%= button_to("Logout", destroy_user_session_path, method: :delete) %></li>
+        <% else %>    
+            <li><%= link_to 'Sign up', new_user_registration_path %> </li>
+            <li><%= link_to 'Login', new_user_session_path %> </li>
+        <% end %>    
+        </ul>
+    </div>
+</div>
+<!-- Offcanvas Menu End -->
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__top__inner">
+                        <div class="header__top__left">
+                        <ul>
+                        <% if user_signed_in? %>
+                            <li><%= link_to current_user.email, edit_user_registration_path %></li>
+                            <li><%= button_to("Logout", destroy_user_session_path, method: :delete) %></li>
+                        <% else %>    
+                            <li><%= link_to 'Sign up', new_user_registration_path %> </li>
+                            <li><%= link_to 'Login', new_user_session_path %> </li>
+                        <% end %>    
+                        </ul>
+                        </div>
+                        <div class="header__logo">
+                        <%= link_to root_path do %>
+                            <%= image_tag "logo.png" %>
+                        <% end %>
+                        </div>
+                        <div class="header__top__right">
+                            <div class="header__top__right__cart">
+                            <%= link_to "/shopingcart" do %>
+                                <%= image_tag "icon/cart.png" %>
+                            <% end %>
+                                <div class="cart__price">Cart: <span>$0.00</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li><%= link_to 'Home', root_path %></li>
+                        <li><%= link_to 'About', '/about' %></li>
+                        <li><%= link_to 'Shop', '/products' %></li>
+                        <li><a href="#">Pages</a>   
+                            <ul class="dropdown">
+                                <li><%= link_to 'Shop Details', '/shopdetails' %></li>
+                                <li><%= link_to 'Carts', '/carts' %></li>
+                                <li><%= link_to 'Check Out', '/checkout' %></li>
+                            </ul>
+                        </li>
+                        <li><%= link_to 'Contact', '/contact' %></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
