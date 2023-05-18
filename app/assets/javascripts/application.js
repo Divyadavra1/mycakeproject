@@ -18,3 +18,4 @@
  //= require owl.support
  //= require owl.support.modernizr
  //= require owl.video
+ //= require_tree .

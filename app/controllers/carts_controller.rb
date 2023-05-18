@@ -5,9 +5,7 @@ class CartsController < ApplicationController
 
   def index
     @carts = Cart.all
-    @products = Product.new
     @pagy, @products = pagy(Product.all)
-    # @carts = current_user.cart
   end
 
   def create
@@ -18,7 +16,6 @@ class CartsController < ApplicationController
     redirect_to carts_path
   end
 
-  # Update the quantity of a cart item
   def update
     @carts = current_user.carts.find_by(id: params[:id])
     @carts.update(quantity: params[:quantity].to_i)

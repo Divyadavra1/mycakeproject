@@ -5,15 +5,13 @@ class HomeController < ApplicationController
 
   def index
     @pagy, @products = pagy(Product.all)
-    @product = Product.all
   end
+  
+  def shopdetails; end
+
+  def contact; end
 
   def about; end
-
-  def products
-    @pagy, @product = pagy(Product.all)
-    @products = Product.all
-  end
 
   def checkout; end
 

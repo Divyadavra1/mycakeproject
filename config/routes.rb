@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
     devise_for :users, controllers: { sessions: 'users/sessions' }
   end
-  # post 'carts/:id/update' => 'carts#update'
 
   patch '/:id' => 'carts#update'
   get '/sort', to: 'products#sort', as: 'sort'
@@ -19,9 +18,7 @@ Rails.application.routes.draw do
   delete 'destroy/:id', to: 'carts#destroy', as: 'destroy'
   get 'home/index'
   get 'about' => 'home#about'
-  get 'shops' => 'home#shops'
   get 'shopdetails' => 'home#shopdetails'
-  get 'shopingcart' => 'home#shopingcart'
   get 'checkout' => 'home#checkout'
   get 'contact' => 'home#contact'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

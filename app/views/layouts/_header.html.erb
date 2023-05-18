@@ -24,7 +24,7 @@
         <ul>
         <% if user_signed_in? %>
             <li><%= link_to current_user.email, edit_user_registration_path %></li>
-            <li><%= button_to("Logout", destroy_user_session_path, method: :delete) %></li>
+            <li><%= link_to("Logout", destroy_user_session_path, method: :delete) %></li>
         <% else %>    
             <li><%= link_to 'Sign up', new_user_registration_path %> </li>
             <li><%= link_to 'Login', new_user_session_path %> </li>
@@ -44,7 +44,7 @@
                         <ul>
                         <% if user_signed_in? %>
                             <li><%= link_to current_user.email, edit_user_registration_path %></li>
-                            <li><%= button_to("Logout", destroy_user_session_path, method: :delete) %></li>
+                            <li><%= link_to("Logout", destroy_user_session_path, method: :delete) %></li>
                         <% else %>    
                             <li><%= link_to 'Sign up', new_user_registration_path %> </li>
                             <li><%= link_to 'Login', new_user_session_path %> </li>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__cart">
-                            <%= link_to "/shopingcart" do %>
+                            <%= link_to "/carts" do %>
                                 <%= image_tag "icon/cart.png" %>
                             <% end %>
                                 <div class="cart__price">Cart: <span>$0.00</span></div>

@@ -3,11 +3,6 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    @products = if params[:product] && params[:product][:id]
-                  Product.search(params[:product][:id])
-                else
-                  Product.all
-                end
   end
 
   def sort

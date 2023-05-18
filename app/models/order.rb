@@ -2,6 +2,4 @@
 
 class Order < ApplicationRecord
   belongs_to :user
-
-  def subtotal; end
 end

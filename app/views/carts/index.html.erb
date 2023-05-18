@@ -53,13 +53,12 @@
                                 <%= form_with(url: carts_path, method: :patch) do |form| %>
                                   <%= form.hidden_field :product_id, value: product.id %>
                                   <%= form.number_field :quantity, value: product.quantity %>
-                                  <%= form.submit 'Update' %>
                                 <% end %>
                                 </div>
                             </div>
                             </td>
                             <td class="cart__price"></td>
-                            <td class="cart__close"><%= button_to 'Remove cart', destroy_path(product), method: :delete %>
+                            <td class="cart__close"><%= button_to 'Remove', destroy_path(product), method: :delete %>
                             </span></td>
                         </tr>
                     <% end %>
@@ -79,8 +78,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">               
+            <div class="col-lg-4">   
+                <div class="cart__discount">
+                    <h6>Discount codes</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Coupon code">
+                            <button type="submit">Apply</button>
+                        </form>
+                </div>            
                 <div class="cart__total">
+                <h6>Cart total</h6> 
+                        <ul>
+                            <li>Subtotal <span>$ 169.50</span></li>
+                            <li>Total <span>$ 169.50</span></li>
+                        </ul>
                     <%= link_to "Proceed to checkout", "/checkout", class: "primary-btn" %> 
                 </div>
             </div>
