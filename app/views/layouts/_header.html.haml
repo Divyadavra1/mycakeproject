@@ -1,0 +1,73 @@
+%body
+  #preloder
+    .loader
+  .offcanvas-menu-overlay
+  .offcanvas-menu-wrapper
+    .offcanvas__cart
+      .offcanvas__cart__links
+        %a.search-switch{:href => "#"}
+      .offcanvas__cart__item
+        %a{:href => "#"}
+          = image_tag "icon/cart.png"
+          %span 0
+        .cart__price
+          Cart:
+          %span $0.00
+    .offcanvas__logo
+      = link_to 'Home', root_path
+      = image_tag "logo.png"
+    #mobile-menu-wrap
+    .offcanvas__option
+      %ul
+        - if user_signed_in?
+          %li= link_to current_user.email, edit_user_registration_path
+          %li= link_to("Logout", destroy_user_session_path, method: :delete)
+        - else
+          %li
+            = link_to 'Sign up', new_user_registration_path
+          %li
+            = link_to 'Login', new_user_session_path
+  %header.header
+    .header__top
+      .container
+        .row
+          .col-lg-12
+            .header__top__inner
+              .header__top__left
+                %ul
+                  - if user_signed_in?
+                    %li= link_to current_user.email, edit_user_registration_path
+                    %li= link_to("Logout", destroy_user_session_path, method: :delete)
+                  - else
+                    %li
+                      = link_to 'Sign up', new_user_registration_path
+                    %li
+                      = link_to 'Login', new_user_session_path
+              .header__logo
+                = link_to root_path do
+                  = image_tag "logo.png"
+              .header__top__right
+                .header__top__right__cart
+                  = link_to "/carts" do
+                    = image_tag "icon/cart.png"
+                  .cart__price
+                    Cart:
+                    %span $0.00
+        .canvas__open
+          %i.fa.fa-bars
+    .container
+      .row
+        .col-lg-12
+          %nav.header__menu.mobile-menu
+            %ul
+              %li= link_to 'Home', root_path
+              %li= link_to 'About', '/about'
+              %li= link_to 'Shop', '/products'
+              %li
+                %a{:href => "#"} Pages
+                %ul.dropdown
+                  %li= link_to 'Shop Details', '/shopdetails'
+                  %li= link_to 'Carts', '/carts'
+                  %li= link_to 'Check Out', '/checkout'
+              %li= link_to 'Contact', '/contact'
+

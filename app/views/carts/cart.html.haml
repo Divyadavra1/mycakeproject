@@ -1,0 +1,39 @@
+.breadcrumb-option
+  .container
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__text
+          %h2 Shopping cart
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__links
+          = link_to 'Home', root_path
+          %span Shopping cart
+%section.shopping-cart.spad
+  .container
+    .row
+      .col-lg-8
+        .shopping__cart__table
+          %table
+            %thead
+              %tr
+                %th Product
+                %th Quantity
+                %th Total
+                %th
+            %tbody
+              - Cart.all.each do |product|
+                = product.name
+                = product.price
+                = product.quantity
+        .row
+          .col-lg-6.col-md-6.col-sm-6
+            .continue__btn
+              = link_to "Continue Shopping", "/products"
+          .col-lg-6.col-md-6.col-sm-6
+            .continue__btn.update__btn
+              = link_to "#" do
+                %i.fa.fa-spinner Update cart
+      .col-lg-4
+        .cart__total
+          = link_to "Proceed to checkout", "/checkout", class: "primary-btn"
+

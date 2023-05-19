@@ -2,7 +2,9 @@
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    # @products = Product.all
+    @pagy, @products = pagy(Product.all, items: 8)
+
   end
 
   def sort

@@ -1,0 +1,53 @@
+.breadcrumb-option
+  .container
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__text
+          %h2 Shop
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__links
+          = link_to 'Home', root_path
+          %span Shop
+%section.shop.spad
+  .container
+    .shop__option
+      .row
+        .col-lg-7.col-md-7
+          .shop__option__search
+            %form{:action => "#"}
+              %select
+                %option{:value => ""} Filter
+                %option{:value => ""} Red Velvet
+                %option{:value => ""} Cup Cake
+                %option{:value => ""} Biscuit
+              %input{:placeholder => "Search", :type => "text"}/
+              %button{:type => "submit"}
+                %i.fa.fa-search
+        .col-lg-5.col-md-5
+          .shop__option__right
+            %select
+              %option{:value => ""} Default sorting
+              %option{:value => ""} A to Z
+              %option{:value => ""} 1 - 8
+              %option{:value => ""} Name
+            = link_to "#" do
+              %i.fa.fa-list
+            = link_to "#" do
+              %i.fa.fa-reorder
+    .row
+      - @products.each do |product|
+        %tr
+          %td.product__cart__item
+            .product__cart__item__pic
+              - if product.image.present?
+                = image_tag url_for(product.image), resize_to_limit: [100, 100]
+            .product__cart__item__text
+              = product.name
+              %br/
+              = product.selling_price
+        = form_with(url: cart_path) do |f|
+          = f.hidden_field :id, value: product.id
+          = f.number_field :quantity, value: 0, min:1
+          = f.submit "Add to cart"
+    != pagy_nav(@pagy)
+

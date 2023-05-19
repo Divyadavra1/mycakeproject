@@ -1,0 +1,25 @@
+%footer.footer.set-bg{"data-setbg" => "assets/footer-bg.jpg"}
+  .copyright
+    .container
+      .row
+        .col-lg-7
+          %p.copyright__text.text-white
+            Copyright ©
+            :javascript
+              document.write(new Date().getFullYear());
+            All rights reserved | This template is made with
+            %i.fa.fa-heart{"aria-hidden" => "true"}
+            by
+            %a{:href => "https://colorlib.com", :target => "_blank"} Colorlib
+        .col-lg-5
+          .copyright__widget
+            %ul
+              %li= link_to 'Privacy Policy', '#'
+              %li= link_to 'Terms & Conditions', '#'
+              %li= link_to 'Site Map', '#'
+.search-model
+  .h-100.d-flex.align-items-center.justify-content-center
+    .search-close-switch +
+    %form.search-model-form
+      %input#search-input{:placeholder => "Search here.....", :type => "text"}/
+

@@ -1,0 +1,26 @@
+
+%html{:lang => "zxx"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "Cake Template", :name => "description"}/
+    %meta{:content => "Cake, unica, creative, html", :name => "keywords"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "ie=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Cake | Template
+    = csrf_meta_tags
+    = csp_meta_tag
+    %link{:href => "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap", :rel => "stylesheet"}/
+    %link{:href => "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap", :rel => "stylesheet"}/
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag 'application'
+  %body
+    - if notice
+      .alert.alert-info= notice
+    - if alert
+      .alert.alert-warning= alert
+    = render 'layouts/header'
+    = yield
+    - unless action_name == "new" || action_name == "edit"
+      = render 'layouts/footer'
+

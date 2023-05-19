@@ -1,0 +1,72 @@
+%section.about.spad
+  .container
+    .row
+      .col-lg-6.col-md-6
+        .about__text
+          .section-title
+            %span About Cake shop
+            %h2 Cakes and bakes from the house of Queens!
+          %p
+            The "Cake Shop" is a Jordanian Brand that started as a small family business. The owners are
+            Dr. Iyad Sultan and Dr. Sereen Sharabati, supported by a staff of 80 employees.
+      .col-lg-6.col-md-6
+        .about__bar
+          .about__bar__item
+            %p Cake design
+            #bar1.barfiller
+              .tipWrap
+                %span.tip
+              %span.fill{"data-percentage" => "95"}
+
+%section.product.spad
+  .container
+    .row
+      - @products.each do |product|
+        .col-lg-3.col-md-6.col-sm-6
+          .product__item
+            .product__item__pic
+              - if product.image.present?
+                = image_tag url_for(product.image), resize_to_limit: [100, 100]
+              .product__label
+                %span Cupcake
+            .product__item__text
+              %h6
+                %a{:href => "#"}= product.name
+              .product__item__price= product.selling_price
+              .cart_add
+                %a{:href => "#"}
+                  = form_for Cart.new do |f|
+                    = f.hidden_field :product_id, value: product.id
+                    = f.hidden_field :quantity, value: 1
+                    = f.submit 'Add to Cart'
+!= pagy_nav(@pagy)
+
+%section.instagram.spad
+  .container
+    .row
+      .col-lg-4.p-0
+        .instagram__text
+          .section-title
+            %span Follow us on instagram
+            %h2 Sweet moments are saved as memories.
+      .col-lg-8
+        .row
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic
+              = image_tag "instagram/instagram-1.jpg"
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic.middle__pic
+              = image_tag "instagram/instagram-2.jpg"
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic
+              = image_tag "instagram/instagram-3.jpg"
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic
+              = image_tag "instagram/instagram-4.jpg"
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic.middle__pic
+              = image_tag "instagram/instagram-5.jpg"
+          .col-lg-4.col-md-4.col-sm-4.col-6
+            .instagram__pic
+              = image_tag "instagram/instagram-3.jpg"
+

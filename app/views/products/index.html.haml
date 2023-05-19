@@ -1,0 +1,50 @@
+.breadcrumb-option
+  .container
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__text
+          %h2 Shop
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__links
+          = link_to 'Home', root_path
+          %span Shop
+
+%section.shop.spad
+  .container
+    .shop__option
+      .row
+        .col-lg-7.col-md-7
+          = form_tag filter_path, method: :get do
+            = select_tag :filter_name, options_for_select(Product.pluck(:name).uniq), prompt: 'All Products'
+            = submit_tag 'Filter'
+          .shop__option__search
+            = form_tag search_path, :method => "get" do
+              = search_field_tag :search, params[:search], placeholder: "Search"
+              %button{:type => "submit"}
+                %i.fa.fa-search
+        .col-lg-5.col-md-5
+          .shop__option__right
+            = form_tag sort_path, method: :get do
+              = select_tag :sort_order, options_for_select([['A to Z', 'asc'], ['Z to A', 'desc']], params[:sort_order]), prompt: 'Default sorting'
+              = submit_tag 'Sort'
+    .row
+      - @products.each do |product|
+        .col-lg-3.col-md-6.col-sm-6
+          .product__item
+            .product__item__pic
+              - if product.image.present?
+                = image_tag url_for(product.image), resize_to_limit: [100, 100]
+              .product__label
+                %span Cupcake
+            .product__item__text
+              %h6
+                %a{:href => "#"}= product.name
+              .product__item__price= product.selling_price
+              .cart_add
+                %a{:href => "#"}
+                  = form_for Cart.new do |f|
+                    = f.hidden_field :product_id, value: product.id
+                    = f.hidden_field :quantity, value: 1
+                    = f.submit 'Add to Cart'
+!= pagy_nav(@pagy)
+

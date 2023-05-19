@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, except: %i[index about checkout shopdetails contact]
 
   def index
-    @pagy, @products = pagy(Product.all)
+    @pagy, @products = pagy(Product.all, items: 8)
   end
   
   def shopdetails; end

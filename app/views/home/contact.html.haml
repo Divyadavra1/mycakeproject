@@ -1,0 +1,64 @@
+%section.contact.spad
+  .container
+    .contact__address
+      .row
+        .col-lg-4.col-md-6.col-sm-6
+          .contact__address__item
+            %h6 san bernardino
+            %ul
+              %li
+                %span.icon_pin_alt
+                %p 795 W 5th St, San Bernardino, CA 92410, USA
+              %li
+                %span.icon_headphones
+                %p +1 800-786-1000
+              %li
+                %span.icon_mail_alt
+                %p Sweetcake@support.com
+        .col-lg-4.col-md-6.col-sm-6
+          .contact__address__item
+            %h6 Los angeles
+            %ul
+              %li
+                %span.icon_pin_alt
+                %p 639 S Spring St, Los Angeles, CA 90014, USA
+              %li
+                %span.icon_headphones
+                %p +1 213-612-3000
+              %li
+                %span.icon_mail_alt
+                %p Sweetcake@support.com
+        .col-lg-4.col-md-6.col-sm-6
+          .contact__address__item
+            %h6 san bernardino
+            %ul
+              %li
+                %span.icon_pin_alt
+                %p 1000 Lakepoint Dr, Frisco, CO 80443, USA
+              %li
+                %span.icon_headphones
+                %p +1 800-786-1000
+              %li
+                %span.icon_mail_alt
+                %p Sweetcake@support.com
+    .row
+      .col-lg-4
+        .contact__text
+          %h3 Contact With us
+          %ul
+            %li Representatives or Advisors are available:
+            %li Mon-Fri: 5:00am to 9:00pm
+            %li Sat-Sun: 6:00am to 9:00pm
+          %img{:alt => "", :src => "img/cake-piece.png"}/
+      .col-lg-8
+        .contact__form
+          %form{:action => "#"}
+            .row
+              .col-lg-6
+                %input{:placeholder => "Name", :type => "text"}/
+              .col-lg-6
+                %input{:placeholder => "Email", :type => "text"}/
+              .col-lg-12
+                %textarea{:placeholder => "Message"}
+                %button.site-btn{:type => "submit"} Send Us
+

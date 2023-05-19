@@ -17,10 +17,26 @@ class CartsController < ApplicationController
   end
 
   def update
-    @carts = current_user.carts.find_by(id: params[:id])
-    @carts.update(quantity: params[:quantity].to_i)
-    redirect_to carts_path
+    @cart = Cart.find_by(id: params[:id])
+  
+    @cart.products.each do |product|
+      quantity = params[:cart][:products_attributes][product.id.to_s][:quantity].to_i
+      product.selling_price = product.selling_price * quantity
+      product.quantity = quantity
+      product.save
+    end
+  
+    redirect_to carts_path(@cart), notice: 'Cart updated successfully.'
   end
+
+  def cart_params
+    params.require(:cart).permit(products_attributes: [:id, :quantity])
+  end
+  # def update
+  #   @carts = current_user.carts.find_by(id: params[:id])
+  #   @carts.update(quantity: params[:quantity].to_i)
+  #   redirect_to carts_path
+  # end
 
   # def update
   #   @carts = Cart.all

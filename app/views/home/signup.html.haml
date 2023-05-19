@@ -1,0 +1,29 @@
+%a.logo{:href => "https://front.codes/", :target => "_blank"}
+  %img{:alt => "", :src => "https://assets.codepen.io/1462889/fcy.png"}/
+.section
+  .container
+    .row.full-height.justify-content-center
+      .col-12.text-center.align-self-center.py-5
+        .section.pb-5.pt-5.pt-sm-2.text-center
+          %h6.mb-0.pb-3
+            %span Sign Up
+          %input#reg-log.checkbox{:name => "reg-log", :type => "checkbox"}/
+          .card-3d-wrap.mx-auto
+            .card-3d-wrapper
+              .card-front
+                .center-wrap
+                  .section.text-center
+                    %h4.mb-4.pb-3 Sign Up
+                    .form-group
+                      %input#logname.form-style{:autocomplete => "off", :name => "logname", :placeholder => "Your Full Name", :type => "text"}/
+                      %i.input-icon.uil.uil-user
+                    .form-group.mt-2
+                      %input#logemail.form-style{:autocomplete => "off", :name => "logemail", :placeholder => "Your Email", :type => "email"}/
+                      %i.input-icon.uil.uil-at
+                    .form-group.mt-2
+                      %input#logpass.form-style{:autocomplete => "off", :name => "logpass", :placeholder => "Your Password", :type => "password"}/
+                      %i.input-icon.uil.uil-lock-alt
+                    %a.btn.mt-4{:href => "#"} submit
+                  %br/
+                  = link_to 'Back to Home', root_path
+

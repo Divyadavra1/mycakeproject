@@ -1,0 +1,24 @@
+%h3 Filter Products
+%section.shop.spad
+  .container
+    .shop__option
+      .row
+        - @products.each do |product|
+          .col-lg-3.col-md-6.col-sm-6
+            .product__item
+              .product__item__pic
+                - if product.image.present?
+                  = image_tag url_for(product.image), resize_to_limit: [100, 100]
+                .product__label
+                  %span Cupcake
+              .product__item__text
+                %h6
+                  %a{:href => "#"}= product.name
+                .product__item__price= product.selling_price
+                .cart_add
+                  %a{:href => "#"}
+                    = form_for Cart.new do |f|
+                      = f.hidden_field :product_id, value: product.id
+                      = f.hidden_field :quantity, value: 1
+                      = f.submit 'Add to Cart'
+

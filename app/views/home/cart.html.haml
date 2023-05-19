@@ -1,0 +1,66 @@
+.breadcrumb-option
+  .container
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__text
+          %h2 Shopping cart
+      .col-lg-6.col-md-6.col-sm-6
+        .breadcrumb__links
+          = link_to 'Home', root_path
+          %span Shopping cart
+%section.shopping-cart.spad
+  .container
+    .row
+      .col-lg-8
+        .shopping__cart__table
+          %table
+            %thead
+              %tr
+                %th Product
+                %th Quantity
+                %th Total
+                %th
+            %tbody
+              - @products.each do |product|
+                = form_with(url: cart_path) do |f|
+                  %tr
+                    %td.product__cart__item
+                      .product__cart__item__pic
+                        - if product.image.present?
+                          = image_tag url_for(product.image), resize_to_limit: [100, 100]
+                      .product__cart__item__text
+                        = product.name
+                        %br/
+                        = product.selling_price
+                    %td.quantity__item
+                      .quantity
+                        .pro-qty
+                          %input{:type => "text", :value => "1"}/
+                    %td.cart__price $30.00
+                    %td.cart__close
+                      = button_to 'Remove cart', destroy_path(product), method: :delete
+        .row
+          .col-lg-6.col-md-6.col-sm-6
+            .continue__btn
+              = link_to "Continue Shopping", "/shop"
+          .col-lg-6.col-md-6.col-sm-6
+            .continue__btn.update__btn
+              = link_to "#" do
+                %i.fa.fa-spinner Update cart
+      .col-lg-4
+        .cart__discount
+          %h6 Discount codes
+          %form{:action => "#"}
+            %input{:placeholder => "Coupon code", :type => "text"}/
+            %button{:type => "submit"} Apply
+        .cart__total
+          %h6 Cart total
+          %ul
+            %li
+              Subtotal
+              %span $ 169.50
+            %li
+              Total
+              %span $ 169.50
+          = link_to "Proceed to checkout", "/checkout", class: "primary-btn"
+
