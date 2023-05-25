@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
     devise_for :users, controllers: { sessions: 'users/sessions' }
   end
-
-  patch '/:id' => 'carts#update'
+ 
+  patch '/:id', to: 'carts#update'
   get '/sort', to: 'products#sort', as: 'sort'
   get '/filter', to: 'products#filter', as: 'filter'
   get 'search', to: 'products#search'

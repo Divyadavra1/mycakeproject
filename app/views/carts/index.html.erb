@@ -34,31 +34,33 @@
                             </tr>
                         </thead>
                         <tbody>        
-                        <% @carts.all.each do |product| %>
+                        
+                        <% @carts.all.each do |cart| %>
                             <tr>
                             <td class="product__cart__item">
                                 <div class="product__cart__item__pic">
-                                <% if product.product.image.present? %>
-                                    <%= image_tag url_for(product.product.image), resize_to_limit: [100, 100] %>
+                                <% if cart.product.image.present? %>
+                                    <%= image_tag url_for(cart.product.image), resize_to_limit: [100, 100] %>
                                 <% end %>
                                 </div>
                                 <div class="product__cart__item__text">
-                                <%= product.product.name %>
-                                <%= product.product.selling_price %>
+                                <%= cart.product.name %>
+                                <%= cart.product.selling_price %>
                                 </div>
                             </td>
                             <td class="quantity__item">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                <%= form_with(url: carts_path, method: :patch) do |form| %>
-                                  <%= form.hidden_field :product_id, value: product.id %>
-                                  <%= form.number_field :quantity, value: product.quantity %>
-                                <% end %>
+                                <%= form_with(model: cart, url: cart_path(cart), method: :patch) do |f| %>
+                                    <%= f.label :quantity %>
+                                    <%= f.number_field :quantity, min: 1 %>
+                                    <%= f.submit 'Update' %>
+                                  <% end %>
                                 </div>
                             </div>
                             </td>
                             <td class="cart__price"></td>
-                            <td class="cart__close"><%= button_to 'Remove', destroy_path(product), method: :delete %>
+                            <td class="cart__close"><%= button_to 'Remove', destroy_path(cart), method: :delete %>
                             </span></td>
                         </tr>
                     <% end %>

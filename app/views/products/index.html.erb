@@ -1,0 +1,84 @@
+<div class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="breadcrumb__text">
+          <h2>Shop</h2>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="breadcrumb__links">
+          <%= link_to 'Home', root_path %>
+          <span>Shop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="shop spad">
+  <div class="container">
+    <div class="shop__option">
+      <div class="row">
+        <div class="col-lg-7 col-md-7">
+          <%= form_tag filter_path, method: :get do %>
+            <%= select_tag :filter_name, options_for_select(Product.pluck(:name).uniq), prompt: 'All Products' %>
+            <%= submit_tag 'Filter' %>
+          <% end %>
+          <div class="shop__option__search">
+            <%= form_tag search_path, :method => "get" do %>
+              <%= search_field_tag :search, params[:search], placeholder: "Search" %>
+              <button type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5">
+          <div class="shop__option__right">
+            <%= form_tag sort_path, method: :get do %>
+              <%= select_tag :sort_order, options_for_select([['A to Z', 'asc'], ['Z to A', 'desc']], params[:sort_order]), prompt: 'Default sorting' %>
+              <%= submit_tag 'Sort' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="product__item">
+            <div class="product__item__pic">
+              <% if product.image.present? %>
+                <%= image_tag url_for(product.image), resize_to_limit: [100, 100] %>
+              <% end %>
+              <div class="product__label">
+                <span>Cupcake</span>
+              </div>
+            </div>
+            <div class="product__item__text">
+              <h6>
+                <a href="#">
+                  <%= product.name %>
+                </a>
+              </h6>
+              <div class="product__item__price">
+                <%= product.selling_price %>
+              </div>
+              <div class="cart_add">
+                <a href="#">
+                  <%= form_for Cart.new do |f| %>
+                    <%= f.hidden_field :product_id, value: product.id %>
+                    <%= f.hidden_field :quantity, value: 1 %>
+                    <%= f.submit 'Add to Cart' %>
+                  <% end %>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<%= raw(pagy_nav(@pagy)) %>
+
