@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :products
   resources :carts
+  resources :checkout
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'about' => 'home#about'
   get 'shopdetails' => 'home#shopdetails'
-  get 'checkout' => 'home#checkout'
   get 'contact' => 'home#contact'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")

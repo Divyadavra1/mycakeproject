@@ -19,7 +19,6 @@ class CartsController < ApplicationController
   def update
     @carts = current_user.carts.find_by(id: params[:id])
     if @carts.update(carts_params)
-      total_price
       redirect_to carts_path(@carts), notice: 'Cart item updated successfully.'
     else
       render :show
@@ -30,12 +29,9 @@ class CartsController < ApplicationController
       @cart = Cart.find(params[:id])
       @cart.destroy
       redirect_to carts_path
-    end
-  private
-
-  def total_price
-    quantity * selling_price
   end
+ 
+  private
 
   def carts_params
     params.require(:cart).permit(:quantity)
@@ -46,32 +42,7 @@ class CartsController < ApplicationController
     #   # @carts.calculate_total
     #   redirect_to carts_path, notice: 'Cart was successfully updated.'
     # end
-    private
-  
-    # def carts_params
-    #   params.require(:cart).permit(:quantity, :selling_price)
-    # end
-  
-    # def update_product_prices
-      # @cart.product.update(selling_price: @cart.product.selling_price * @cart.quantity)
-    # end
-   
-  # def update
-  #   @carts = Cart.find_by(id: params[:id])
-  #   @carts = Cart.new(cart_params)
-  #   redirect_to carts_path
-  # end
-  
-  # def update
-  #   @carts = Cart.all
-  #   @carts = Cart.find_by(id: params[:id])
-  #   @carts.update(cart_params)
-  #   @carts.update_price
-  #   redirect_to carts_path(@carts.id), notice: 'Quantity updated successfully.'
-  # end
-
-
-
+    
   private
 
   def cart_params
