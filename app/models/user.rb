@@ -17,9 +17,11 @@ class User < ApplicationRecord
   after_initialize do |_user|
     puts 'You have initialized an object!'
   end
+  
   def total_price
     carts.sum(:price)
   end
+  
   before_save do
     self.email = email.downcase
     puts 'before save'
